@@ -2,7 +2,7 @@ package com.example.news_data.models
 
 import java.util.Date
 
-data class Articles(
+data class Article(
     val id: Long,
     val source: Source,
     val author: String,

@@ -55,4 +55,6 @@ dependencies {
     implementation(libs.viewmodel)
     implementation(libs.kotlinx.coroutines.android)
 
+    implementation(project(":news-data"))
+
 }

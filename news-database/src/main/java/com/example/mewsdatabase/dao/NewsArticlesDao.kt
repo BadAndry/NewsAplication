@@ -5,8 +5,8 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.RawQuery
 import com.example.mewsdatabase.models.ArticleDBO
+import kotlinx.coroutines.flow.Flow
 
 
 @Dao
@@ -14,7 +14,7 @@ interface NewsArticlesDao {
 
 
     @Query("SELECT * FROM articles")
-    fun getAllArticles(): List<ArticleDBO>
+    fun getAllArticles(): Flow<List<ArticleDBO>>
 
 
     @Insert(onConflict = OnConflictStrategy. REPLACE)
