@@ -14,8 +14,10 @@ interface NewsArticlesDao {
 
 
     @Query("SELECT * FROM articles")
-    fun getAllArticles(): Flow<List<ArticleDBO>>
+    suspend fun getAllArticles(): List<ArticleDBO>
 
+    @Query("SELECT * FROM articles")
+    fun observeAllArticles(): Flow<List<ArticleDBO>>
 
     @Insert(onConflict = OnConflictStrategy. REPLACE)
     suspend fun insert(articles: List<ArticleDBO>)

@@ -18,12 +18,12 @@ class NewDataBase internal constructor(private val dataBase: NewsDataBaseRoom) {
 @Database(entities = [ArticleDBO::class], version = 1)
 @TypeConverters(TypeConvector::class)
 
-abstract class NewsDataBaseRoom: RoomDatabase() {
+internal abstract class NewsDataBaseRoom: RoomDatabase() {
 
     abstract fun articlesDao(): NewsArticlesDao
+}
 
-
-        fun getDatabase(context: Context): NewDataBase {
+        fun GetDatabase(context: Context): NewDataBase {
                 val newsDataBaseRoom = Room.databaseBuilder(
                     checkNotNull(context.applicationContext),
                     NewsDataBaseRoom::class.java,
@@ -31,4 +31,4 @@ abstract class NewsDataBaseRoom: RoomDatabase() {
                 ).build()
                 return NewDataBase(newsDataBaseRoom)
             }
-        }
+
