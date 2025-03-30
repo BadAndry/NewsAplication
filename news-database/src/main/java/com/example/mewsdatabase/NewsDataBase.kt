@@ -10,29 +10,25 @@ import com.example.mewsdatabase.models.ArticleDBO
 import com.example.mewsdatabase.utils.TypeConvector
 
 
-@Database(entities = [ArticleDBO::class], version = 1)
+class NewDataBase internal constructor(private val dataBase: NewsDataBaseRoom) {
+    val articlesDao: NewsArticlesDao
+        get() = dataBase.articlesDao()
+}
 
+@Database(entities = [ArticleDBO::class], version = 1)
 @TypeConverters(TypeConvector::class)
 
-abstract class NewsDataBase: RoomDatabase() {
+internal abstract class NewsDataBaseRoom: RoomDatabase() {
 
-    abstract fun articles(): NewsArticlesDao
+    abstract fun articlesDao(): NewsArticlesDao
+}
 
-    companion object {
-
-
-        private var INSTANCE: NewsDataBase? = null
-
-        fun getDatabase(context: Context): NewsDataBase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    NewsDataBase::class.java,
+        fun GetDatabase(context: Context): NewDataBase {
+                val newsDataBaseRoom = Room.databaseBuilder(
+                    checkNotNull(context.applicationContext),
+                    NewsDataBaseRoom::class.java,
                     "app_database"
                 ).build()
-                INSTANCE = instance
-                instance
+                return NewDataBase(newsDataBaseRoom)
             }
-        }
-    }
-}
+

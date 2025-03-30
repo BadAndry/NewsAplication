@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/news-main-features" />
             <option value="$PROJECT_DIR$/news-api" />
+            <option value="$PROJECT_DIR$/news-core" />
             <option value="$PROJECT_DIR$/news-data" />
             <option value="$PROJECT_DIR$/news-database" />
           </set>
